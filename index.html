@@ -3,86 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
+    <title>GymCodex GitHub Showcase</title>
     <style>
-        /* Reset default browser styles */
-        body, h1, p {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        /* Body and Background */
+        /* General Styling */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
             text-align: center;
+            padding: 1.5em 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Gym Themed Background */
+        .container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
+            padding: 2em;
+            background-image: url('https://source.unsplash.com/1600x900/?gym,fitness');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Overlay Effect */
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        /* Iframe Styling */
+        .iframe-container {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            height: 600px;
+            z-index: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border: 4px solid #1e3c72;
+            border-radius: 10px;
             overflow: hidden;
         }
 
-        .container {
-            max-width: 600px;
-            padding: 20px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 1.2rem;
-            color: #777;
-            margin-bottom: 20px;
-        }
-
-        /* Fancy animation */
-        .loader {
-            margin: 20px auto;
-            border: 10px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 10px solid #ff6347; /* Tomato color */
-            width: 60px;
-            height: 60px;
-            animation: spin 2s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Footer */
         footer {
-            margin-top: 30px;
+            text-align: center;
+            padding: 1em;
+            color: #fff;
             font-size: 0.9rem;
-            color: #aaa;
-        }
-
-        footer a {
-            color: #ff6347;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        Welcome to GymCodex – Your Fitness, Simplified 💪
+    </header>
+
+    <!-- Main Content -->
     <div class="container">
-        <h1>🚧 We're Building Something Great!</h1>
-        <p>Our site is currently under construction. Stay tuned for something amazing!</p>
-        <div class="loader"></div>
-        <footer>
-            <p>Need to get in touch? <a href="mailto:contact@example.com">Email us</a>.</p>
-        </footer>
+        <div class="iframe-container">
+            <!-- Embed the GitHub Page Here -->
+            <iframe src="https://your-github-page.github.io"></iframe>
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        Proudly powered by GymCodex | © 2024 GymCodex, All Rights Reserved
+    </footer>
 </body>
 </html>
