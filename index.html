@@ -75,21 +75,102 @@
                                                 <input type="submit" data-wait="Please wait..." class="button submit w-button" value=""/>
                                             </div>
                                         </form>
-                                        <div class="success-message w-form-done">
-                                            <div class="g-inline-m">
-                                                <img src="https://cdn.prod.website-files.com/66572623a2ba17e70808baf9/66745117c90c16b6a3a0661e_Success%20Icon.svg" loading="lazy" alt="" class="contain-image"/>
-                                                <div>
-                                                    <strong>Thank you!</strong>
-                                                     Your email has been sent.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="error-message w-form-fail">
-                                            <div class="g-inline-m">
-                                                <img src="https://cdn.prod.website-files.com/66572623a2ba17e70808baf9/66745117044c836b9ba7c527_Error%20Icon.svg" loading="lazy" alt="" class="contain-image"/>
-                                                <div>Oops! Something went wrong while submitting the form.</div>
-                                            </div>
-                                        </div>
+                                 
+<script>
+  const form2 = document.getElementById("wf-form-Subscription-Form");
+
+  form2.addEventListener("submit", formSubmit2);
+
+  function formSubmit2(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    // Show loading message
+    showLoadingMessage2("Submitting your subscription...");
+
+    fetch("https://getform.io/f/bvrywqmb", {
+      method: "POST",
+      body: formData,
+      headers: {
+        "Accept": "application/json",
+      },
+    })
+    .then(response => {
+      clearLoadingMessage2();
+      if (response.ok) {
+        form2.reset();
+        showSuccessMessage2("Thank you! Your subscription was successful.");
+      } else {
+        showSuccessMessage2("Oops! Something went wrong.", true);
+      }
+    })
+    .catch(error => {
+      clearLoadingMessage2();
+      console.log(error);
+      showSuccessMessage2("Network error. Please try again.", true);
+    });
+  }
+
+  function showLoadingMessage2(message) {
+    clearLoadingMessage2();
+
+    const msg = document.createElement("div");
+    msg.id = "form-loading-message";
+    msg.textContent = message;
+    msg.style.marginTop = "10px";
+    msg.style.fontWeight = "bold";
+    msg.style.color = "white";
+    msg.style.padding = "10px 15px";
+    form2.parentNode.insertBefore(msg, form2.nextSibling);
+  }
+
+  function clearLoadingMessage2() {
+    const loadingMsg = document.getElementById("form-loading-message");
+    if (loadingMsg) loadingMsg.remove();
+  }
+
+  function showSuccessMessage2(message, isError = false) {
+    // Remove existing message if any
+    let existingMsg = document.getElementById("form-success-message");
+    if (existingMsg) {
+      existingMsg.remove();
+      clearTimeout(existingMsg._timeoutId);
+    }
+
+    // Create message element
+    const msg = document.createElement("div");
+    msg.id = "form-success-message";
+    msg.textContent = message;
+    msg.style.marginTop = "10px";
+    msg.style.fontWeight = "bold";
+    msg.style.color = "white";
+    msg.style.padding = "10px 15px";
+    msg.style.borderRadius = "5px";
+    msg.style.opacity = 0;
+    msg.style.transition = "opacity 0.5s ease";
+
+    // Insert the message after the form
+    form2.parentNode.insertBefore(msg, form2.nextSibling);
+
+    // Trigger fade-in
+    requestAnimationFrame(() => {
+      msg.style.opacity = 1;
+    });
+
+    // Fade-out after 3 seconds and remove
+    msg._timeoutId = setTimeout(() => {
+      msg.style.opacity = 0;
+      msg.addEventListener('transitionend', () => {
+        msg.remove();
+      });
+    }, 3000);
+  }
+</script>
+
+
+
+
+
                                     </div>
                                     <div class="form-inline">
                                         <div class="g-inline-xs">
