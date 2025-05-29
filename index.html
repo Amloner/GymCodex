@@ -41,7 +41,7 @@
     <div class="page-wrapper">
         
         <div class="global-margin global-corners global-shadow">
-            <section class="section hero">
+            <section class="section hero scale-transition">
                 <div class="wrapper">
                     <div class="row">
                         <div data-w-id="a5e74fff-05e6-dbe7-4b1b-956b87c089a7" style="-webkit-transform:translate3d(null, 100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(null, 100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(null, 100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(null, 100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="col lg6 md4 mdl5 sm2">
@@ -560,5 +560,15 @@
     </div>
     <script src="/script2.js" type="text/javascript"></script>
     <script src="/script.js" type="text/javascript"></script>
+    <script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const el = document.querySelector(".scale-transition");
+    if (el) {
+      requestAnimationFrame(() => {
+        el.classList.add("visible");
+      });
+    }
+  });
+</script>
 </body>
 </html>

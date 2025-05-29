@@ -4060,6 +4060,18 @@ blockquote {
   transition: color 0.25s;
   display: flex;
 }
+
+.scale-transition {
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+  transform: translateY(100px) scale(0.95);
+}
+
+.scale-transition.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 .icon-link:hover {
   color: var(--light-pink);
   text-decoration: none;
