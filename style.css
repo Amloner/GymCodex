@@ -1996,6 +1996,8 @@ body {
   font-family: Inter, sans-serif;
   font-size: 1rem;
   line-height: 1.5;
+  padding-top: env(safe-area-inset-top);
+  margin-top: calc(-1 * env(safe-area-inset-top));
 }
 h1 {
   color: var(--grey);
