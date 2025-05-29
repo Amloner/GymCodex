@@ -2350,6 +2350,13 @@ blockquote {
   padding-top: 180px;
   padding-bottom: 150px;
 }
+
+/* Change background image on small screens */
+@media (max-width: 768px) {
+  .section.hero {
+    background-image: url(/radiant-gradient-rotated.png); /* replace with your small screen image */
+  }
+}
 .section.hero-bg {
   background-image: url(/radiant-gradient.png);
   background-position: 100% 100%;
