@@ -2347,12 +2347,12 @@ blockquote {
   background-repeat: repeat;
   background-size: cover;
   height: 90vh;
-  padding-top: 180px;
+  padding-top: 80px;
   padding-bottom: 150px;
 }
 
 /* Change background image on small screens */
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .section.hero {
     background-image: url(/radiant-gradient-rotated.png); /* replace with your small screen image */
   }
