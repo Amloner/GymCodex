@@ -200,7 +200,6 @@
                         );
 
                         form2.addEventListener("submit", formSubmit2);
-
                         function formSubmit2(e) {
                           e.preventDefault();
                           const formData = new FormData(e.target);
@@ -221,7 +220,7 @@
                             .then((response) => {
                               clearLoadingMessage2();
                               if (response.ok) {
-                                form.reset();
+                                form2.reset(); // ✅ correct reference
                                 showSuccessMessage2(
                                   "Thank you! Your subscription was successful."
                                 );
@@ -233,7 +232,7 @@
                               }
                             })
                             .catch((error) => {
-                              clearLoadingMessage();
+                              clearLoadingMessage2(); // also fixed typo from clearLoadingMessage()
                               console.log(error);
                               showSuccessMessage2(
                                 "Network error. Please try again.",
@@ -241,7 +240,6 @@
                               );
                             });
                         }
-
                         function showLoadingMessage2(message) {
                           clearLoadingMessage2();
 
