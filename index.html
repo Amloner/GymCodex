@@ -206,7 +206,9 @@
                           const formData = new FormData(e.target);
                           const email = formData.get("Email");
 
-                          showLoadingMessage("Submitting your subscription...");
+                          showLoadingMessage2(
+                            "Submitting your subscription..."
+                          );
 
                           fetch("https://api.gymcodex.com/landingWebsiteForm", {
                             method: "POST",
@@ -217,14 +219,14 @@
                             body: JSON.stringify({ Email: email }),
                           })
                             .then((response) => {
-                              clearLoadingMessage();
+                              clearLoadingMessage2();
                               if (response.ok) {
                                 form.reset();
-                                showSuccessMessage(
+                                showSuccessMessage2(
                                   "Thank you! Your subscription was successful."
                                 );
                               } else {
-                                showSuccessMessage(
+                                showSuccessMessage2(
                                   "Oops! Something went wrong.",
                                   true
                                 );
@@ -233,7 +235,7 @@
                             .catch((error) => {
                               clearLoadingMessage();
                               console.log(error);
-                              showSuccessMessage(
+                              showSuccessMessage2(
                                 "Network error. Please try again.",
                                 true
                               );
