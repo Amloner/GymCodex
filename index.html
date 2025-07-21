@@ -204,9 +204,7 @@
                           e.preventDefault();
                           const formData = new FormData(e.target);
                           const email = formData.get("email2");
-                          showLoadingMessage2(
-                            "Submitting your subscription..."
-                          );
+                          showLoadingMessage2("Submitting your email...");
 
                           fetch("https://api.gymcodex.com/landingWebsiteForm", {
                             method: "POST",
@@ -221,7 +219,7 @@
                               if (response.ok) {
                                 form2.reset();
                                 showSuccessMessage2(
-                                  "Thank you! Your subscription was successful."
+                                  "Thank you! Your email has been submitted."
                                 );
                               } else {
                                 showSuccessMessage2(
@@ -749,7 +747,7 @@
                       const formData = new FormData(e.target);
                       const email = formData.get("Email");
 
-                      showLoadingMessage("Submitting your subscription...");
+                      showLoadingMessage("Submitting your email...");
 
                       fetch("https://api.gymcodex.com/landingWebsiteForm", {
                         method: "POST",
@@ -764,7 +762,7 @@
                           if (response.ok) {
                             form.reset();
                             showSuccessMessage(
-                              "Thank you! Your subscription was successful."
+                              "Thank you! Your email has been submitted."
                             );
                           } else {
                             showSuccessMessage(
