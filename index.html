@@ -1108,7 +1108,7 @@ Stop managing, <br>Start engaging        </h2>
 Start Your Free 2 Week Trial Today!        </p>
       </div>
 
-<div id="offerModal" class="modal">
+      <div id="offerModal" class="modal">
   <div class="div-block-9 offer-1 modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
     
@@ -1116,12 +1116,12 @@ Start Your Free 2 Week Trial Today!        </p>
     <p>Experience Gym Codex in action. Book your free demo today!</p>
 
     <!-- Form -->
-    <form>
+    <form id="demoForm">
       <label for="name">Name</label>
-      <input type="text" id="name" placeholder="Enter your name" required>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
       <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" placeholder="Enter your phone number" required>
+      <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
 
       <button type="submit">Book My Free Demo</button>
     </form>
@@ -1131,8 +1131,47 @@ Start Your Free 2 Week Trial Today!        </p>
       <p>📞 +91 81908 62033</p>
       <p>📧 help@gymcodex.com</p>
     </div>
+
+    <p id="formMessage" style="margin-top:12px; color:green;"></p>
   </div>
 </div>
+
+<script>
+const form = document.getElementById('demoForm');
+const message = document.getElementById('formMessage');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault(); // Prevent page reload
+
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+
+  try {
+    const response = await fetch("https://api.gymcodex.com/landingWebsiteForm", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({ name, phone })
+    });
+
+    if (response.ok) {
+      message.style.color = "green";
+      message.textContent = "Thank you! Your demo request has been received.";
+      form.reset();
+      setTimeout(closeModal, 2000); // close modal after 2 seconds
+    } else {
+      message.style.color = "red";
+      message.textContent = "Oops! Something went wrong. Please try again.";
+    }
+  } catch (error) {
+    message.style.color = "red";
+    message.textContent = "Network error. Please try again later.";
+    console.error(error);
+  }
+});
+</script>
 
 
       <div class="section-4">
