@@ -109,12 +109,12 @@
       })(window, document);
     </script>
     <link
-      href="https://cdn.prod.website-files.com/621e2f8a07e5ac72dc2748f4/6221467110c4303ee5c82c87_Favicon1x.png"
+      href="logoMark2.png"
       rel="shortcut icon"
       type="image/x-icon"
     />
     <link
-      href="https://cdn.prod.website-files.com/621e2f8a07e5ac72dc2748f4/62215585b083b6ecf91aed10_Group%202802%20(2).png"
+      href="logoMark2.png"
       rel="apple-touch-icon"
     />
     <script
@@ -511,6 +511,10 @@
             >
               Stop managing. Start engaging. </br> Track attendance, celebrate
               progress, and keep members coming back.
+
+          </br>
+          </br><a class="button-50" onclick="openModal()">Try Gym Codex</a>
+
             </p>
           </div>
           <div
@@ -942,7 +946,7 @@
               glance for smarter engagement. <br />‍
             </p>
             <img
-              src="https://cdn.prod.website-files.com/621e2f8a07e5ac72dc2748f4/621e5df56e54f02ff564d9b5_Illu%20quick%20capture.png"
+              src="memberdashboard.png"
               loading="lazy"
               width="862.5"
               sizes="(max-width: 479px) 100vw, (max-width: 767px) 90vw, 43vw"
@@ -969,17 +973,12 @@
               WhatsApp lets you manage your gym smoothly from one place.<br />‍<br />‍
             </p>
             <img
-              src="https://cdn.prod.website-files.com/621e2f8a07e5ac72dc2748f4/621f9ababa9df52c7c51de54_Group%202705.png"
+              src="smartinteg.png"
               loading="lazy"
               width="697"
               sizes="(max-width: 479px) 100vw, (max-width: 767px) 90vw, 43vw"
               alt="intregrations"
-              srcset="
-                https://assets-global.website-files.com/621e2f8a07e5ac72dc2748f4/621f9ababa9df52c7c51de54_Group%202705-p-500.png   500w,
-                https://assets-global.website-files.com/621e2f8a07e5ac72dc2748f4/621f9ababa9df52c7c51de54_Group%202705-p-800.png   800w,
-                https://assets-global.website-files.com/621e2f8a07e5ac72dc2748f4/621f9ababa9df52c7c51de54_Group%202705-p-1080.png 1080w,
-                https://assets-global.website-files.com/621e2f8a07e5ac72dc2748f4/621f9ababa9df52c7c51de54_Group%202705.png        1394w
-              "
+        
               class="image-6"
             />
           </div>
@@ -1061,10 +1060,10 @@
             <h3 class="heading-3">Engage Members at Every Stage</h3>
             <p class="paragraph-3">
               From welcome messages to attendance nudges, plan expiries, and
-              renewals, engage your members on WhatsApp at every key moment.<br />‍
+              renewals, engage your members on WhatsApp at every key moment.
             </p>
             <img
-              src="bodytrack.png"
+              src="notifications.png"
               loading="lazy"
               width="870"
               sizes="(max-width: 479px) 100vw, (max-width: 767px) 90vw, 43vw"
@@ -1108,6 +1107,34 @@ Stop managing, <br>Start engaging        </h2>
         <p class="paragraph-8 darkp">
 Start Your Free 2 Week Trial Today!        </p>
       </div>
+
+<div id="offerModal" class="modal">
+  <div class="div-block-9 offer-1 modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    
+    <h2>Sign Up for a Free Demo Session</h2>
+    <p>Experience Gym Codex in action. Book your free demo today!</p>
+
+    <!-- Form -->
+    <form>
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+      <button type="submit">Book My Free Demo</button>
+    </form>
+
+    <div class="contact-info">
+      <p><strong>Prefer to reach us directly?</strong></p>
+      <p>📞 +91 81908 62033</p>
+      <p>📧 help@gymcodex.com</p>
+    </div>
+  </div>
+</div>
+
+
       <div class="section-4">
         <div class="columns-3 w-row">
           <div class="column-3 w-col w-col-4 w-col-stack">
@@ -1118,7 +1145,24 @@ Start Your Free 2 Week Trial Today!        </p>
 
               </h4>
              <br>
-            <a href="#" class="button-kairn">Try Gym Codex!</a>
+<a class="button-kairn" onclick="openModal()">Try Gym Codex!</a>
+
+
+<script>function openModal() {
+  document.getElementById("offerModal").style.display = "flex"; // show when clicked
+}
+function closeModal() {
+  document.getElementById("offerModal").style.display = "none"; // hide again
+}
+// Close if user clicks outside
+window.onclick = function(event) {
+  const modal = document.getElementById("offerModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
        <ul role="list" class="list list-offer-2 list-one">
                 <li class="list-item">Member Management</li>
                 <li class="list-item-2 list-item">Lead & Staff Management</li>
@@ -1134,7 +1178,7 @@ Start Your Free 2 Week Trial Today!        </p>
                 ₹12000 <span class="span-middle">/year</span>
               </h4>
               <br>
-            <a href="#" class="button-kairn">Try Gym Codex!</a>
+<a class="button-kairn" onclick="openModal()">Try Gym Codex!</a>
 
               <ul role="list" class="list">
                 <li class="list-item list-feat-1">New gym features</li>
@@ -1453,22 +1497,21 @@ memoji 2
           <h3 class="heading-6 white-text">
 It’s time to<br />engage your members          </h3>
           <p class="paragraph-5 white-p">
-From check-ins to renewals, Gym Codex ensures they feel supported every step of their fitness journey.          </p>
+From check-ins to renewals, Gym Codex ensures they feel supported every step of their fitness journey.   
+ </br>
+          </br>
+        <a class="button-50" onclick="openModal()">Try Gym Codex</a>
+      </p>
           <div class="div-block-6"></div>
         </div>
-        <img
+   <!--   <img
           src="https://cdn.prod.website-files.com/621e2f8a07e5ac72dc2748f4/6220a94bb06ddb2c43ef969a_Phone%20face.png"
           loading="lazy"
           width="561"
           sizes="(max-width: 767px) 100vw, (max-width: 991px) 31vw, 300px"
           alt=""
-          srcset="
-            https://assets-global.website-files.com/621e2f8a07e5ac72dc2748f4/6220a94bb06ddb2c43ef969a_Phone%20face-p-500.png  500w,
-            https://assets-global.website-files.com/621e2f8a07e5ac72dc2748f4/6220a94bb06ddb2c43ef969a_Phone%20face-p-800.png  800w,
-            https://assets-global.website-files.com/621e2f8a07e5ac72dc2748f4/6220a94bb06ddb2c43ef969a_Phone%20face.png       1122w
-          "
           class="image-15"
-        />
+        />-->  
       </div>
     </div>
     <div class="footer w-container">
@@ -1776,12 +1819,12 @@ Your gym’s operating system for engaged members            </p>
     })(window, document);
   </script>
   <link
-    href="https://cdn.prod.website-files.com/621e2f8a07e5ac72dc2748f4/6221467110c4303ee5c82c87_Favicon1x.png"
+    href="logoMark2.png"
     rel="shortcut icon"
     type="image/x-icon"
   />
   <link
-    href="https://cdn.prod.website-files.com/621e2f8a07e5ac72dc2748f4/62215585b083b6ecf91aed10_Group%202802%20(2).png"
+    href="logoMark2.png"
     rel="apple-touch-icon"
   />
   <script
@@ -1998,12 +2041,12 @@ Your gym’s operating system for engaged members            </p>
       })(window, document);
     </script>
     <link
-      href="https://cdn.prod.website-files.com/621e2f8a07e5ac72dc2748f4/6221467110c4303ee5c82c87_Favicon1x.png"
+      href="logoMark2.png"
       rel="shortcut icon"
       type="image/x-icon"
     />
     <link
-      href="https://cdn.prod.website-files.com/621e2f8a07e5ac72dc2748f4/62215585b083b6ecf91aed10_Group%202802%20(2).png"
+      href="logoMark2.png"
       rel="apple-touch-icon"
     />
     <script
