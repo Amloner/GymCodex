@@ -970,7 +970,7 @@
             <h3 class="heading-5">Smart integrations</h3>
             <p class="paragraph-4">
               Seamless integration of attendance, body composition scale, and
-              WhatsApp lets you manage your gym smoothly from one place.<br />‍<br />‍
+              WhatsApp lets you manage your gym smoothly from one place.<br />‍
             </p>
             <img
               src="smartinteg.png"
@@ -1059,8 +1059,9 @@
           >
             <h3 class="heading-3">Engage Members at Every Stage</h3>
             <p class="paragraph-3">
-              From welcome messages to attendance nudges, plan expiries, and
-              renewals, engage your members on WhatsApp at every key moment.
+
+              From welcome messages to attendance nudges, plan expiries, and renewals, keep your members automatically engaged on WhatsApp without lifting a finger.
+
             </p>
             <img
               src="notifications.png"
@@ -1135,7 +1136,6 @@ Start Your Free 2 Week Trial Today!        </p>
     <p id="formMessage" style="margin-top:12px; color:green;"></p>
   </div>
 </div>
-
 <script>
 const form = document.getElementById('demoForm');
 const message = document.getElementById('formMessage');
@@ -1145,6 +1145,10 @@ form.addEventListener('submit', async function(e) {
 
   const name = document.getElementById('name').value;
   const phone = document.getElementById('phone').value;
+
+  // Show immediate feedback
+  message.style.color = "blue";
+  message.textContent = "Sending your request...";
 
   try {
     const response = await fetch("https://api.gymcodex.com/landingWebsiteForm", {
@@ -1172,6 +1176,7 @@ form.addEventListener('submit', async function(e) {
   }
 });
 </script>
+
 
 
       <div class="section-4">
