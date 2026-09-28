@@ -1,57 +1,26 @@
-<header>
+# GymCodex website
 
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Add your open source license, GitHub uses MIT license.
--->
+Includes all HTML, CSS, JavaScript and images, with pricing and the popup demo form.
 
-# GitHub Pages
+## Run
+From this directory: python3 -m http.server 8000
+Open http://localhost:8000. No build or installation is required.
 
-_Create a site or blog from your GitHub repositories with GitHub Pages._
+## Demo API
+The submit handler in script.js sends POST https://api.gymcodex.com/landingWebsiteForm
+Headers: Content-Type: application/json; Accept: application/json
+Body: { "name": "...", "phone": "..." }
 
-</header>
+It validates inputs, prevents duplicate submissions while pending, times out after 20 seconds, preserves entered details on failure, and displays confirmation after a successful HTTP response (unless JSON explicitly contains success: false).
 
-<!--
-  <<< Author notes: Finish >>>
-  Review what we learned, ask for feedback, provide next steps.
--->
+The backend is responsible for email delivery. Configure CORS on your API to allow your deployed website origin, POST and OPTIONS, and the Content-Type and Accept headers. Include localhost if you want local testing. Do not rely on opening index.html via file:// for API testing.
 
-## Finish
+Sending logic was checked with mocked success/error responses. No live lead was submitted during testing.
 
-_Congratulations friend, you've completed this course!_
+## Deploy
+Upload index.html, style.css, script.js and assets/ to your static host, preserving relative paths. If updating the previous complete site, replace script.js and style.css.
 
-<img src=https://octodex.github.com/images/constructocat2.jpg alt=celebrate width=300 align=right>
+Google Fonts requires internet access; fallback fonts are configured.
 
-Your blog is now live and has been deployed!
-
-Here's a recap of all the tasks you've accomplished in your repository:
-
-- You enabled GitHub Pages.
-- You selected a theme using the config file.
-- You learned about proper directory format and file naming conventions in Jekyll.
-- You created your first blog post with Jekyll!
-
-### What's next?
-
-- Keep working on your GitHub Pages site... we love seeing what you come up with!
-- We'd love to hear what you thought of this course [in our discussion board](https://github.com/orgs/skills/discussions/categories/github-pages).
-- [Take another GitHub Skills course](https://github.com/skills).
-- [Read the GitHub Getting Started docs](https://docs.github.com/en/get-started).
-- To find projects to contribute to, check out [GitHub Explore](https://github.com/explore).
-
-<footer>
-
-<!--
-  <<< Author notes: Footer >>>
-  Add a link to get support, GitHub status page, code of conduct, license link.
--->
-
----
-
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/github-pages) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
-
-&copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
-
-</footer>
+## Legal pages
+privacy-policy.html and terms.html retain the supplied policy content and July 20, 2025 dates. legal.css styles those pages. Home-page footer links and policy cross-links use relative paths. Deploy all files together.
