@@ -55,10 +55,20 @@ demoForm.addEventListener('submit', async (event) => {
     try { data = text ? JSON.parse(text) : null; } catch { /* No JSON response required. */ }
     if (data?.success === false) throw new Error('Request rejected');
     if (generation !== demoGeneration) return;
+
+    if (typeof gtag === 'function') {
+  gtag('event', 'generate_lead', {
+    form_name: 'demo_request'
+  });
+}
+
+
     demoForm.reset();
     demoName.setCustomValidity('');
     demoPhone.setCustomValidity('');
     demoStatus.textContent = 'Thank you! Your demo request has been submitted. We’ll contact you to arrange a time.';
+
+
   } catch (error) {
     if (generation !== demoGeneration) return;
     demoStatus.textContent = error.name === 'AbortError'
