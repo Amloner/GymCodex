@@ -24,11 +24,19 @@ Google Fonts requires internet access; fallback fonts are configured.
 
 ## Gym website demo
 
-Open http://localhost:8000/demo/1/ for the standalone FORM Athletic Club concept. This single-location gym website has its own visual identity, CSS, and JavaScript, independent of the GymCodex marketing site. Deploy the complete `demo/` directory; no build is needed.
+Open http://localhost:8000/demo/1/ for BASELINE, a mobile-first, single-location gym concept with an independent blue/white visual identity. Its HTML, CSS, and JavaScript are self-contained; there is no build or backend dependency. Deploy the complete `demo/1/` directory with the main site.
 
-The page centres on a complimentary first-session offer, with training options, a first-visit walkthrough, an inline enquiry demo, FAQs, one Indiranagar neighbourhood map, and mobile quick actions. The form validates a trimmed name and a 10–15 digit phone number, then displays an explicit demo confirmation; it never transmits or persists entered details. Replace illustrative gym content, the offer, contact details, and map before live use, and connect a real enquiry backend before accepting bookings. The masked phone and reserved `.example` email are placeholders.
+The page includes a photographic hero, training stories, a three-photo gallery with manual controls, one Anna Nagar neighbourhood map, FAQs, and a native visit-request dialog. The dialog validates a trimmed name and a 10–15 digit phone number and shows a clearly labelled demo completion. It does not send, log, or persist the entered details. Closing resets the dialog and restores focus. Replace the fictional brand, facilities, hours, contacts, and map location, and connect a real enquiry backend before live use. The masked phone and reserved `.example` email are placeholders.
 
-Google Maps and Google Fonts require network access. An external neighbourhood map link is available if the embed cannot load. The photo-led design uses locally stored Unsplash images: `gym.jpg` (`1534438327276-14e5300c3a48`), `training.jpg` (`1517836357463-d25dfeac3438`), `strength.jpg` (`1534258936925-c58bed479fcb`), and `movement.jpg` (`1518611012118-696072aa579a`). These are illustrative stock photos. Below-the-fold images load lazily; the full-width hero image loads with high priority.
+Google Fonts and Google Maps require network access; a separate neighbourhood-map link provides an alternative to the embedded map. The current design uses new stock photography from Unsplash, stored locally in `demo/1/media/`: `lift.jpg` (`1581009146145-b5ef050c2e1e`), `club.jpg` (`1534368270820-9de3d8053204`), `coach.jpg` (`1571019613454-1cb2f99b2d8b`), and `space.jpg` (`1593079831268-3381b0db4a77`). The hero loads with high priority and other initial images load lazily.
+
+## Animated gym demo 2
+
+Open http://localhost:8000/demo/2/ for **OFFBEAT Movement Club**, a separate mobile-first concept. It has its own HTML, CSS, JavaScript, and four local photos in `demo/2/images/`; it does not import demo 1's files. Deploy the complete directory, with no build step.
+
+The design uses a lilac/pink collage, animated headline entrance, floating photo, rotating stickers, a scrolling marquee, scroll reveals, reading progress, pointer-responsive photo tilt, and a native horizontally scrolling workout rail. The top motion control pauses animation; system reduced-motion settings disable it by default. Workout navigation and schedule day tabs work with keyboard controls. Sample schedule selections prefill the two-step guest-list form. Validation is local, with no submissions or persistence; the result explicitly says no booking was made. The map loads only when requested, and an external directions link is always available.
+
+OFFBEAT and its Jubilee Hills location, contact details, schedule, and amenities are fictional. Replace them and connect a real backend before using the form for actual enquiries. New stock photos are from Unsplash: `power.jpg` (`1549476464-37392f717541`), `sweat.jpg` (`1599058917212-d750089bc07e`), `rhythm.jpg` (`1518609878373-06d740f60d8b`), and `studio.jpg` (`1540497077202-7c8a3999166f`). Fonts and maps require network access.
 
 ## Legal pages
 privacy-policy.html and terms.html retain the supplied policy content and July 20, 2025 dates. legal.css styles those pages. Home-page footer links and policy cross-links use relative paths. Deploy all files together.

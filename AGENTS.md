@@ -17,7 +17,8 @@ The site uses plain HTML, CSS, and browser JavaScript. There is no package manif
 | `terms.html` | Terms and conditions with their own header/footer and analytics snippet |
 | `legal.css` | Legal-page styles, loaded after `style.css` |
 | `assets/` | WebP branding, gym photography, product illustrations, and dashboard images |
-| `demo/1/` | Standalone single-location FORM Athletic Club demo, isolated CSS/JS, and local photo |
+| `demo/1/` | Standalone single-location BASELINE demo, isolated CSS/JS, and local photography |
+| `demo/2/` | Separate OFFBEAT animated gym concept, own styles/scripts, and new images |
 | `README.md` | Local serving, API contract, and deployment notes |
 | `CNAME` | Custom domain: `www.gymcodex.com` |
 | `_config.yml` | Jekyll configuration with `theme: minima`; local preview requires no Jekyll build |
@@ -90,6 +91,8 @@ There are no npm build/test commands. Documentation-only edits need a diff/conte
 
 ## Deployment context
 
-The `/demo/1/` route is an independent FORM Athletic Club gym marketing concept with its own cream, forest, and orange visual identity and typography; the main site's palette does not apply to it. Keep it focused on one illustrative Indiranagar location and a first-session enquiry. Its local-only form validates inputs and shows an explicit demo confirmation without transmitting or persisting personal data. Offers, amenities, hours, and contacts are illustrative; retain that distinction. Deploy the complete `demo/` directory. Google Maps needs network access and has an external map-link fallback. Do not load the main lead-form script here.
+The `/demo/1/` route is an independent BASELINE gym concept with electric-blue/white styling and Archivo Black/Inter typography; the main site's palette does not apply. It represents one illustrative Anna Nagar, Chennai location. Its manually controlled gallery has three photos, and all visit CTAs open one native dialog with labelled fields, local validation, an explicit demo result, reset-on-close, body scroll locking, and focus return. No personal data is transmitted or persisted. Keep fictional content and stock imagery distinguishable from verified business facts. The current images are in `demo/1/media/`. Deploy the complete `demo/` directory. Google Maps needs network access and has an external neighbourhood-map link. Do not load the main lead-form script here.
+
+The `/demo/2/` route is the independent OFFBEAT Movement Club concept, with lilac/pink collage styling, Syne/Outfit/IBM Plex Mono typography, and photos in its own `images/` folder. Preserve its single fictional Jubilee Hills location, manual workout rail, keyboard-accessible schedule day tabs, two-step local-only guest form, and click-to-load map. Motion includes entrance/reveal effects, marquee, rotating stickers, photo tilt, and reading progress; retain the global pause control and system reduced-motion handling. Do not import demo 1 or main-site CSS/JS into demo 2, and do not change demo 1 as part of demo 2 work. Sample classes only preselect a workout preference; they do not reserve sessions.
 
 The repository includes GitHub Pages configuration and a custom domain, but live hosting settings are not established by these files alone. Deploy the landing page, both legal pages, both stylesheets, `script.js`, and `assets/` together, preserving paths. Keep domain configuration intact unless the task concerns hosting changes.
