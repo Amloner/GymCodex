@@ -2,6 +2,12 @@
 
 Includes all HTML, CSS, JavaScript and images, with pricing and the popup demo form.
 
+The landing page retains the photographic hero, followed by four overlapping, swipeable cards for billing, renewals, check-ins, and staff permissions. The deck supports touch swipes, mouse drags, looping previous/next buttons, and Arrow/Home/End keys when focused. Vertical touch scrolling and reduced-motion preferences are respected. Covered cards are inert and hidden from screen readers. No carousel dependency is required; without JavaScript all four cards appear as a readable static list.
+
+Smart scale reports, WhatsApp automation, a standalone dashboard section, and pricing follow in that order. Original billing, attendance, gym, scale, WhatsApp, and dashboard assets are reused; the dashboard has its own yellow section and navigation anchor; posture assessment details are expandable. Testimonials are currently omitted. Posture plan availability remains unverified and is not included in the starting-plan list. Pricing retains applicable taxes and annual billing, with the requested seven-day, no-credit-card trial copy.
+
+A fixed bottom “Book a free demo” button is shown on the landing page at widths up to 650px. It opens the existing demo dialog, hides while it is open, and includes safe-area spacing and footer clearance.
+
 ## Run
 From this directory: python3 -m http.server 8000
 Open http://localhost:8000. No build or installation is required.

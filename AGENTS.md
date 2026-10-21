@@ -10,9 +10,9 @@ The site uses plain HTML, CSS, and browser JavaScript. There is no package manif
 
 | File | Responsibility |
 | --- | --- |
-| `index.html` | Landing page, navigation, feature tabs, pricing, demo dialog, and footer |
+| `index.html` | Landing page, navigation, core feature cards, pricing, demo dialog, and footer |
 | `style.css` | Shared design tokens, landing-page layout, responsive rules, pricing, and dialog styles |
-| `script.js` | Feature-tab interactions, demo dialog lifecycle, validation, API submission, and lead analytics |
+| `script.js` | Demo dialog lifecycle, validation, API submission, lead analytics, and feature deck controls |
 | `privacy-policy.html` | Privacy policy with its own header/footer and analytics snippet |
 | `terms.html` | Terms and conditions with their own header/footer and analytics snippet |
 | `legal.css` | Legal-page styles, loaded after `style.css` |
@@ -26,22 +26,23 @@ The site uses plain HTML, CSS, and browser JavaScript. There is no package manif
 
 ## Page content and product positioning
 
-The landing page runs from the “Less admin. More gym.” hero through everyday features (`#simplify`), body composition (`#progress`), WhatsApp messaging, the dashboard (`#overview`), pricing (`#pricing`), and the final demo invitation (`#demo`).
+The landing page runs from the “Less admin. More gym.” hero through four swipeable fundamentals (`#simplify`), smart scale reports and expandable posture assessments (`#progress`), WhatsApp messaging (`#communication`), a standalone yellow dashboard section (`#overview`), pricing (`#pricing`), and the final demo invitation (`#demo`).
 
-Current published copy offers a starting plan from ₹10,000/year plus applicable taxes, billed annually, a smart scale included at no extra cost, and a one-week software trial. Premium plans use contact-based pricing. Starting-plan WhatsApp receipts and renewal reminders are distinct from premium WhatsApp marketing integration. Staff shifts, tasks/follow-ups, payslips, marketing features, and a member app are advertised across premium tiers. Treat these as existing copy, not independently verified product facts; do not invent or silently change commercial promises.
+Current published copy offers a starting plan from ₹10,000/year plus applicable taxes, billed annually, a smart scale included at no extra cost, and a seven-day software trial at the gym with no credit card required. Premium plans use contact-based pricing. Starting-plan WhatsApp receipts and renewal reminders are distinct from premium WhatsApp marketing integration. Staff shifts, tasks/follow-ups, payslips, marketing features, and a member app are advertised across premium tiers. Treat these as existing copy, not independently verified product facts; do not invent or silently change commercial promises.
 
 ## JavaScript behavior to preserve
 
-### Feature explorer
+### Core operations and assessments
 
-- The four feature keys are `registration`, `attendance`, `workouts`, and `billing`.
-- Each tab's `data-feature` maps to the `content` object in `script.js` and `assets/<key>.webp`.
-- Selection updates the image, alt text, description, active class, `aria-selected`, roving `tabIndex`, and panel `aria-labelledby`.
-- The vertical tab list supports click, ArrowUp, ArrowDown, Home, and End. Keep markup, content keys, IDs, and asset filenames in sync.
+- Four overlapping cards cover billing, renewals, check-ins, and staff permissions. `script.js` enhances a readable list into a deck with pointer swipes/drags, looping previous/next buttons, and Arrow/Home/End keyboard controls. Only the front card is exposed to assistive technology or keyboard focus. Preserve vertical touch scrolling, pointer cancellation, and reduced-motion support. Without JavaScript all four cards remain visible in a static list.
+- Cards reuse the original billing, dashboard, attendance, and gym images; the scale section uses the original scale asset. No invented interface previews are used. Testimonials are currently omitted.
+- QR registration and workout sharing remain in the starting-plan inclusions. The request supplied new billing, QR check-in, permission, and no-credit-card trial copy; do not infer additional plan inclusions from the feature cards.
+- The posture assessment block is text-led because no real posture report asset is available. Its plan availability is unverified; do not add it to the starting-plan inclusions without confirmation.
+- Preserve the existing scale, WhatsApp and dashboard assets. Tasks and staff follow-ups visible in the dashboard are premium.
 
 ### Demo dialog and form
 
-- All `[data-demo-open]` buttons open the same native `<dialog id="demo-modal">`.
+- All `[data-demo-open]` buttons open the same native `<dialog id="demo-modal">`. The landing page includes a fixed bottom demo CTA at widths up to 650px, with safe-area spacing and footer clearance. It hides while the dialog is open and receives focus again on close.
 - Close button, outside-dialog click, and native Escape behavior close the dialog. Closing resets the form and validity messages, removes the body scroll lock, and restores focus to the opening button.
 - The script assumes landing-page DOM elements exist and is loaded at the end of `index.html`. Do not load it on legal pages without adding appropriate guards.
 - Names must contain at least two characters after trimming. Phone validation allows an optional leading `+`, digits, whitespace, parentheses, dots, and hyphens, with 10–15 digits total. HTML also sets input length constraints.
@@ -63,7 +64,7 @@ All three HTML pages load Google Analytics with measurement ID `G-7695VWHVXK`. A
 - The design uses large condensed headings, photographic/product imagery, alternating light/dark sections, and strong demo calls to action.
 - Main responsive breakpoints are 1000px and 650px, with additional wide-screen rules. Navigation is hidden at 1000px and below.
 - `style.css` contains later overrides for the immersive hero and narrow-screen overflow fixes. Read the full cascade before modifying an earlier rule.
-- Retain keyboard focus indicators, tab semantics, dialog labels, input labels, status announcements, reduced-motion handling, descriptive alt text, and mobile dialog scrolling.
+- Retain keyboard focus indicators, dialog labels, input labels, status announcements, reduced-motion handling, descriptive alt text, and mobile dialog scrolling.
 - Preserve relative asset and page URLs. Legal pages share `style.css`, so check them after changing global selectors.
 - HTML and parts of CSS/JS are densely formatted. Make focused changes and avoid unrelated whole-file reformatting.
 - Preserve supplied legal wording and July 20, 2025 dates unless the task calls for updating them. The privacy policy currently says no tracking technologies are used while the HTML loads Google Analytics; this is an existing content discrepancy, not a resolved or verified compliance claim.
@@ -82,7 +83,7 @@ Open `http://localhost:8000`. Use HTTP rather than `file://` for form testing. G
 For relevant UI or behavior changes, check:
 
 1. Desktop and narrow mobile layouts, especially the hero, pricing, and dialog, for horizontal overflow.
-2. Feature tabs using both pointer and keyboard; confirm image and caption updates.
+2. Core feature cards, assessment content, and navigation anchors at desktop and mobile widths.
 3. Demo opening from different buttons, close/Escape/backdrop behavior, focus return, validation, and scroll locking.
 4. With mocked API responses, success, explicit `success: false`, HTTP/network failure, timeout, duplicate submission, and closing/reopening while pending. Avoid sending real leads during routine tests.
 5. Legal-page navigation, relative assets, and browser console errors.

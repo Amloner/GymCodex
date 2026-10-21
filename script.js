@@ -1,5 +1,3 @@
-const content={registration:{description:'A scan starts their membership journey. Leave the registration forms behind.',alt:'QR registration stand on a gym reception desk'},attendance:{description:'Record member visits through biometric check-in. Keep the attendance register off the desk.',alt:'Biometric fingerprint attendance device at a gym'},workouts:{description:'Send members their workout schedule on WhatsApp, ready for their next session.',alt:'A workout schedule displayed on a phone'},billing:{description:'Send bills automatically on WhatsApp, so every payment comes with a clear record.',alt:'A membership invoice displayed on a phone'}};
-const tabs=[...document.querySelectorAll('[role="tab"]')];function selectTab(tab){tabs.forEach(t=>{const selected=t===tab;t.classList.toggle('active',selected);t.setAttribute('aria-selected',String(selected));t.tabIndex=selected?0:-1});const key=tab.dataset.feature;const img=document.getElementById('feature-image');img.src=`assets/${key}.webp`;img.alt=content[key].alt;document.getElementById('feature-description').textContent=content[key].description;document.getElementById('feature-panel').setAttribute('aria-labelledby',tab.id)}tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectTab(tab));tab.addEventListener('keydown',e=>{let next;if(e.key==='ArrowDown')next=(i+1)%tabs.length;if(e.key==='ArrowUp')next=(i+tabs.length-1)%tabs.length;if(e.key==='Home')next=0;if(e.key==='End')next=tabs.length-1;if(next!==undefined){e.preventDefault();selectTab(tabs[next]);tabs[next].focus()}})});
 // Demo requests are submitted to the GymCodex API.
 const demoModal=document.getElementById('demo-modal');
 const demoForm=document.getElementById('demo-form');
@@ -84,3 +82,112 @@ demoForm.addEventListener('submit', async (event) => {
     demoForm.removeAttribute('aria-busy');
   }
 });
+
+// Enhance the readable feature list into a manually controlled card deck.
+const operationsDeck = document.getElementById('operations-deck');
+if (operationsDeck) {
+  const cards = [...operationsDeck.querySelectorAll('.core-card')];
+  const position = document.getElementById('operations-position');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let active = 0;
+  let animating = false;
+  let gesture = null;
+
+  function renderDeck() {
+    cards.forEach((card, index) => {
+      const depth = (index - active + cards.length) % cards.length;
+      card.dataset.depth = depth;
+      card.style.zIndex = cards.length - depth;
+      card.style.removeProperty('transform');
+      card.classList.toggle('is-active', depth === 0);
+      card.inert = depth !== 0;
+      card.setAttribute('aria-hidden', String(depth !== 0));
+      card.setAttribute('role', 'group');
+      card.setAttribute('aria-roledescription', 'slide');
+      card.setAttribute('aria-label', `${index + 1} of ${cards.length}`);
+    });
+    position.textContent = `${String(active + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
+  }
+
+  async function showCard(index, direction = 1) {
+    if (animating) return;
+    const target = (index + cards.length) % cards.length;
+    if (target === active) return;
+    animating = true;
+    const outgoing = cards[active];
+    if (outgoing.contains(document.activeElement)) operationsDeck.focus({ preventScroll: true });
+    if (!reducedMotion.matches) {
+      const animation = outgoing.animate([
+        { transform: getComputedStyle(outgoing).transform, opacity: 1 },
+        { transform: `translateX(${-direction * operationsDeck.clientWidth * .65}px) rotate(${-direction * 6}deg)`, opacity: 0 }
+      ], { duration: 240, easing: 'ease-in', fill: 'forwards' });
+      try { await animation.finished; } catch { /* Settle on the selected card if interrupted. */ }
+      active = target;
+      renderDeck();
+      animation.cancel();
+    } else {
+      active = target;
+      renderDeck();
+    }
+    animating = false;
+  }
+
+  function clearGesture() {
+    if (!gesture) return;
+    const pointerId = gesture.id;
+    gesture = null;
+    operationsDeck.classList.remove('is-dragging');
+    cards[active].style.removeProperty('transform');
+    if (operationsDeck.hasPointerCapture(pointerId)) operationsDeck.releasePointerCapture(pointerId);
+  }
+
+  document.querySelector('[data-deck-prev]').addEventListener('click', () => showCard(active - 1, -1));
+  document.querySelector('[data-deck-next]').addEventListener('click', () => showCard(active + 1));
+  operationsDeck.addEventListener('keydown', event => {
+    if (event.target !== operationsDeck) return;
+    const destinations = { ArrowRight: active + 1, ArrowLeft: active - 1, Home: 0, End: cards.length - 1 };
+    if (!(event.key in destinations)) return;
+    event.preventDefault();
+    clearGesture();
+    showCard(destinations[event.key], event.key === 'ArrowLeft' || event.key === 'Home' ? -1 : 1);
+  });
+  operationsDeck.addEventListener('pointerdown', event => {
+    if (animating || gesture || !event.isPrimary || event.button !== 0 || event.target.closest('button, a')) return;
+    gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, dx: 0, horizontal: false };
+    operationsDeck.setPointerCapture(event.pointerId);
+  });
+  operationsDeck.addEventListener('pointermove', event => {
+    if (!gesture || event.pointerId !== gesture.id) return;
+    const dx = event.clientX - gesture.x;
+    const dy = event.clientY - gesture.y;
+    if (!gesture.horizontal) {
+      if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { clearGesture(); return; }
+      if (Math.abs(dx) < 10) return;
+      gesture.horizontal = true;
+      operationsDeck.classList.add('is-dragging');
+    }
+    gesture.dx = dx;
+    if (!reducedMotion.matches) {
+      const distance = Math.max(-operationsDeck.clientWidth, Math.min(operationsDeck.clientWidth, dx));
+      cards[active].style.transform = `translateX(${distance}px) rotate(${distance / operationsDeck.clientWidth * 5}deg)`;
+    }
+  });
+  operationsDeck.addEventListener('pointerup', event => {
+    if (!gesture || event.pointerId !== gesture.id) return;
+    const { dx, horizontal } = gesture;
+    const threshold = Math.min(90, operationsDeck.clientWidth * .18);
+    // Start the exit from the dragged position before clearing the pointer state.
+    if (horizontal && Math.abs(dx) > threshold) showCard(active + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+    clearGesture();
+  });
+  operationsDeck.addEventListener('pointercancel', clearGesture);
+  operationsDeck.addEventListener('lostpointercapture', clearGesture);
+  window.addEventListener('blur', clearGesture);
+
+  operationsDeck.classList.add('deck-ready');
+  operationsDeck.tabIndex = 0;
+  operationsDeck.setAttribute('aria-roledescription', 'carousel');
+  operationsDeck.setAttribute('aria-describedby', 'operations-hint');
+  document.querySelector('.deck-toolbar').hidden = false;
+  renderDeck();
+}
