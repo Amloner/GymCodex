@@ -42,7 +42,7 @@ Current published copy offers a starting plan from ₹10,000/year plus applicabl
 
 ### Demo dialog and form
 
-- All `[data-demo-open]` buttons open the same native `<dialog id="demo-modal">`. The landing page includes a fixed bottom demo CTA at widths up to 650px, with safe-area spacing and footer clearance. It hides while the dialog is open and receives focus again on close.
+- All `[data-demo-open]` buttons open the same native `<dialog id="demo-modal">`.
 - Close button, outside-dialog click, and native Escape behavior close the dialog. Closing resets the form and validity messages, removes the body scroll lock, and restores focus to the opening button.
 - The script assumes landing-page DOM elements exist and is loaded at the end of `index.html`. Do not load it on legal pages without adding appropriate guards.
 - Names must contain at least two characters after trimming. Phone validation allows an optional leading `+`, digits, whitespace, parentheses, dots, and hyphens, with 10–15 digits total. HTML also sets input length constraints.

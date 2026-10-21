@@ -156,12 +156,3 @@ img{max-width:100%}
  .deck-toolbar{gap:12px;margin-top:20px}.deck-toolbar>p{font-size:11px;max-width:120px}.deck-toolbar>p>span{display:none}.deck-controls>span{font-size:11px;margin-right:10px}.deck-controls button{width:44px;height:44px}
  .scale-feature{grid-template-columns:minmax(0,1fr);gap:30px}.scale-feature h2{font-size:clamp(48px,13vw,64px)}.scale-feature .scale-stage{aspect-ratio:1.1}.scale-feature .scale-stage>img{width:75%}
 }
-
-/* Persistent mobile demo CTA, with space to keep the footer reachable. */
-.mobile-demo-cta{display:none}
-@media(max-width:650px){
- .landing-page{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
- .mobile-demo-cta{display:flex;position:fixed;z-index:40;left:6%;right:6%;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:88%;min-height:56px;box-shadow:0 5px 25px #0004}
- .mobile-demo-cta:hover{transform:none}
- .modal-open .mobile-demo-cta{visibility:hidden;pointer-events:none}
-}
